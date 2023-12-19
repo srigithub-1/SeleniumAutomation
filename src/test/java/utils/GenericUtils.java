@@ -23,4 +23,23 @@ public class GenericUtils {
 		driver.switchTo().window(childWindow);
 	}
 	
+	public void switchtoFlightBookingPage()
+	{						
+		//Get the count of child windows
+		Set<String> windhandles = driver.getWindowHandles();
+						
+		//Iterate through all the windows in the page
+		Iterator<String>i1 = windhandles.iterator();
+						
+		//Access the parent window
+		String parentWindow = i1.next();
+						
+		//Access the child window
+		String childWindow = i1.next();
+						
+		//Switch to the child window
+		driver.switchTo().window(childWindow);		
+		
+	}
+	
 }

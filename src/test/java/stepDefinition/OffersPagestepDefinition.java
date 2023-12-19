@@ -52,6 +52,7 @@ public class OffersPagestepDefinition
 	public void user_search_with_short_name_in_offers_page_to_check_if_product_exists(String shortName) throws InterruptedException {	   
 		
 		switchtoChildwindow();
+		
 		//Call the Offers Page Page Object
 		//OffersPage offersPage = new OffersPage(driver);
 		offersPage.SearchItem(shortName);
