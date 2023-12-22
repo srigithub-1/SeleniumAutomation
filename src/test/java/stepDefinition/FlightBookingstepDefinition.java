@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.it.Date;
 import pageObjects.FlightBookingpage;
 import utils.GenericUtils;
 import utils.TestContextSetUp;
@@ -25,8 +26,8 @@ public class FlightBookingstepDefinition {
 	public FlightBookingstepDefinition(TestContextSetUp testContextSetUp)
 	{
 		this.testContextSetUp=testContextSetUp;
-		this.flightpage =testContextSetUp.pageObjectManager.getFlightBooking();
-		this.childWindowobj = testContextSetUp.pageObjectManager.getGenericUtils();
+		this.flightpage =testContextSetUp.pageObjectManager.getFlightBooking();		
+		this.childWindowobj = testContextSetUp.genericUtils.getGenericUtils();
 		this.driver =testContextSetUp.pageObjectManager.driver;
 	}	
 	
@@ -40,14 +41,15 @@ public class FlightBookingstepDefinition {
 		childWindowobj.switchtoFlightBookingPage();
 		
 		//Verify that the flight booking page is displayed successfully
-		flightpage.flightBookingHomePage();	    
+		flightpage.verifythatflightBookingHomePageIsShown();	    
 	}
 	
-	@When("I enter the Toronto and Bangalore with Departure Date <DepartDate>")
-	public void i_enter_the_toronto_and_bangalore_with_departure_date_depart_date()
+	@When("^I enter the (.+) and (.+) with Departure Date (.+)$")
+	public void i_enter_the_toronto_and_bangalore_with_departure_date_depart_date(String origination, String destination, String depDate) throws InterruptedException
 	{
-	    // Write code here that turns the phrase above into concrete actions
-	    System.out.println("Hello");
+	    // Enter source and destination cities
+	    flightpage.enterFromAndToCities(origination, destination);
+	    flightpage.enterTravelDate(depDate);
 	}
 	
 	@And("I click on the Search button")

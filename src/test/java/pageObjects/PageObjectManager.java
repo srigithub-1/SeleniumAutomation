@@ -14,7 +14,6 @@ public class PageObjectManager
 	public OffersPage offersPage;
 	public CheckoutPage checkoutPage;
 	public FlightBookingpage flightPage;
-	public GenericUtils genericUtils;
 	
 	//Create constructor
 	public PageObjectManager(WebDriver driver)
@@ -50,10 +49,4 @@ public class PageObjectManager
 		return flightPage;
 	}
 	
-	//Create the object of generic utils class and return the object
-	public GenericUtils getGenericUtils()
-	{
-		genericUtils = new GenericUtils(driver);
-		return genericUtils;
-	}
 }

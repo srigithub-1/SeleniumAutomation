@@ -36,12 +36,12 @@ public class hooks {
 	{
 		WebDriver driver = testContextSetUp.testBase.WebDriverManager();
 		//Capture screenshot for failed scenario
-		if(scenario.isFailed())
-		{
+		//if(scenario.isFailed())
+		//{
 			File sourcePath=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 			byte[] fileContent = FileUtils.readFileToByteArray(sourcePath);
 			scenario.attach(fileContent, "image/png", "image");
-		}
+		//}
 		
 	}
 }

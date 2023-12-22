@@ -7,12 +7,19 @@ import org.openqa.selenium.WebDriver;
 
 public class GenericUtils {
 	public WebDriver driver;
+	public GenericUtils genericUtils;
 	
 	public GenericUtils(WebDriver driver)
 	{
 		this.driver = driver;
 	}
 	
+	//Create the object of generic utils class and return the object
+	public GenericUtils getGenericUtils()
+	{
+		genericUtils = new GenericUtils(driver);
+		return genericUtils;
+	}
 
 	public void SwitchWindowToChild()
 	{
@@ -21,6 +28,7 @@ public class GenericUtils {
 		String parentWindow = i1.next();
 		String childWindow = i1.next();
 		driver.switchTo().window(childWindow);
+		driver.manage().window().maximize();
 	}
 	
 	public void switchtoFlightBookingPage()

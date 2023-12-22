@@ -9,5 +9,5 @@ And I click on the Search button
 Then All the flights matching the Search Criteria should be shown
 
 Examples:
-|FromCity|ToCity|
-|Toronto|Bangalore| 
+|FromCity|ToCity|DepartDate|
+|BLR|PNQ|30/12| 
