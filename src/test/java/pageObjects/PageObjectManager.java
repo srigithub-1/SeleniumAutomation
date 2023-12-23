@@ -3,6 +3,7 @@ package pageObjects;
 import org.openqa.selenium.WebDriver;
 
 import utils.GenericUtils;
+import utils.TestContextSetUp;
 
 public class PageObjectManager 
 {
@@ -14,6 +15,7 @@ public class PageObjectManager
 	public OffersPage offersPage;
 	public CheckoutPage checkoutPage;
 	public FlightBookingpage flightPage;
+	TestContextSetUp testContextSetUp;
 	
 	//Create constructor
 	public PageObjectManager(WebDriver driver)
@@ -45,7 +47,8 @@ public class PageObjectManager
 	//Create the object of flight booking Page and return the object
 	public FlightBookingpage getFlightBooking()
 	{
-		flightPage = new FlightBookingpage(driver);
+		//this.testContextSetUp = testContextSetUp;
+		flightPage = new FlightBookingpage(driver);//testContextSetUp);
 		return flightPage;
 	}
 	

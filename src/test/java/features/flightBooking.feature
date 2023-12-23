@@ -1,4 +1,4 @@
-Feature: Flight Booking
+Feature: Flight Booking on the Test Website "www.phptravels.net"
 
 @FlightBooking
 Scenario Outline: Search for flights with the given search criteria
@@ -10,4 +10,4 @@ Then All the flights matching the Search Criteria should be shown
 
 Examples:
 |FromCity|ToCity|DepartDate|
-|BLR|PNQ|30/12| 
+|BLR|PNQ|30-12-2023| 

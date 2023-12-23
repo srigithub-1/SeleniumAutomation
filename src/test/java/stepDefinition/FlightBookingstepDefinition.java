@@ -1,6 +1,7 @@
 package stepDefinition;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -35,13 +36,14 @@ public class FlightBookingstepDefinition {
 	public void i_navigate_to_the_flight_booking_home_page() 
 	{		
 		//Click on the flight booking link
-		flightpage.flightBookingLinkClick();
+		//flightpage.flightBookingLinkClick();
 		
 		//Switch to the flight booking home page
-		childWindowobj.switchtoFlightBookingPage();
+		//childWindowobj.switchtoFlightBookingPage();
 		
 		//Verify that the flight booking page is displayed successfully
 		flightpage.verifythatflightBookingHomePageIsShown();	    
+		
 	}
 	
 	@When("^I enter the (.+) and (.+) with Departure Date (.+)$")
@@ -55,15 +57,15 @@ public class FlightBookingstepDefinition {
 	@And("I click on the Search button")
 	public void i_click_on_the_search_button()
 	{
-	    // Write code here that turns the phrase above into concrete actions
-		System.out.println("Inside");
+	    // Call the search flights method
+		flightpage.searchForFlights();
 	}
 	
 	@Then("All the flights matching the Search Criteria should be shown")
 	public void all_the_flights_matching_the_search_criteria_should_be_shown()
 	{
-	    // Write code here that turns the phrase above into concrete actions
-		System.out.println("The step Definition file");
+		 // Verify that flight search results are shown
+		flightpage.flightDetailsPageDisplay();
 	}
 	
 }
