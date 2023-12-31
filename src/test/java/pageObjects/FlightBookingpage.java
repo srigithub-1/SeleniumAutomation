@@ -1,5 +1,6 @@
 package pageObjects;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -17,33 +18,34 @@ import io.cucumber.java.it.Date;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import utils.ExplicitWait;
 import utils.GenericUtils;
+import utils.TestBase;
 import utils.TestContextSetUp;
 
-public class FlightBookingpage {
+public class FlightBookingpage extends TestBase{	
 	
-	public WebDriver driver;
 	public List<String> origCity = new ArrayList<>();
 	public List<String> destCity = new ArrayList<>();
 	public List<WebElement> destArray;
 	public List<WebElement> fromDate;
 	public List<WebElement> origCitytext;
 	public List<WebElement> destCitytext;
-	public Boolean flightMenuOptionDisplayed, originatingCityDropdownDisplayed, destinationCityDropdowndisplayed, flightDetailsPageElementDisplayed;
+	public Boolean flightMenuOptionDisplayed, originatingCityDropdownDisplayed, destinationCityDropdowndisplayed;
+	public Boolean flightDetailsPageNoResultsDisplayed, flightDetailsPageSearchResultsSuccessful;
 	public String startDate;
-	TestContextSetUp testContextSetUp;
-	GenericUtils genericUtils;
-	public WebDriverWait waitforElement;
-	
-	
-	//Create a constructor and pass instance of TestContextSetUp driver	
-	public FlightBookingpage(WebDriver driver)//, TestContextSetUp testContextSetUp)
-	{			
-		this.driver = driver;		
 		
-	}
-		
+	
+	//Create a constructor and pass webdriver instance
+//	public FlightBookingpage(WebDriver driver)//, TestContextSetUp testContextSetUp)
+//	{			
+//		
+//		this.driver = driver;		
+//		
+//	}
+
 	//Locators
 
 	By flightBookingPageIsDisplayed = By.xpath("//a[@href='https://phptravels.net/flights']");
@@ -53,15 +55,18 @@ public class FlightBookingpage {
 	By destinationCityTextBox = By.xpath("//input[@role='searchbox']");
 	By departDate = By.id("departure");
 	By searchBox = By.xpath("//button[@id='flights-search']");
-	By flightDetailsPage = By.xpath("//label[text()=' All Flights']");
+	By flightDetailsPageDisplay = By.xpath("//a[@href='https://phptravels.net/flights']");
+	By flightDetailsPageNoResultsText = By.xpath("//img[@alt='no results']");
+	By flightDetailsPageSuccessfulSearchText = By.xpath("//label[text()=' All Flights']");
 	
-
-	
-	public void verifythatflightBookingHomePageIsShown()
+	//Methods	
+	public void verifythatflightBookingHomePageIsShown() throws IOException
 	{
+				
 		flightMenuOptionDisplayed = driver.findElement(flightBookingPageIsDisplayed).isDisplayed();
 		if (flightMenuOptionDisplayed == true)
-		{
+		{			
+			
 			driver.manage().window().maximize();
 		}
 		else if (flightMenuOptionDisplayed == false)
@@ -70,25 +75,23 @@ public class FlightBookingpage {
 		}
 	}
 	
-	public void enterFromAndToCities(String source, String destination) throws InterruptedException
+	public void enterFromAndToCities(String source, String destination) throws InterruptedException, IOException
 	{
 
-			driver.findElement(originatingCityDropdown).click();			
-			driver.findElement(originatingCityTextBox).sendKeys(source);	
-			Thread.sleep(2000);
-			driver.findElement(originatingCityTextBox).sendKeys(Keys.RETURN);
-			Thread.sleep(2000);
+		driver.findElement(originatingCityDropdown).click();			
+		driver.findElement(originatingCityTextBox).sendKeys(source);	
+		Thread.sleep(2000);
+		driver.findElement(originatingCityTextBox).sendKeys(Keys.RETURN);
+		Thread.sleep(2000);
 
-			driver.findElement(destinationCityDropdown).click();			
-			driver.findElement(destinationCityTextBox).sendKeys(destination);
-			Thread.sleep(2000);
-			driver.findElement(destinationCityTextBox).sendKeys(Keys.RETURN);
-
-		
+		driver.findElement(destinationCityDropdown).click();			
+		driver.findElement(destinationCityTextBox).sendKeys(destination);
+		Thread.sleep(2000);
+		driver.findElement(destinationCityTextBox).sendKeys(Keys.RETURN);		
 		
 	}
 	
-	public void enterTravelDate(String departuredate) throws InterruptedException
+	public void enterTravelDate(String departuredate) throws InterruptedException, IOException
 	{
 		driver.findElement(departDate).click();		
 		driver.findElement(departDate).clear();
@@ -98,17 +101,38 @@ public class FlightBookingpage {
 		
 	}
 	
-	public void searchForFlights()
+	public void searchForFlights() throws IOException
 	{
 		driver.findElement(searchBox).click();		
 		
 	}
 	
-	public void flightDetailsPageDisplay()
+	public void flightDetailsPageDisplay() throws IOException, InterruptedException
 	{
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[text()=' All Flights']")));
-		flightDetailsPageElementDisplayed = driver.findElement(flightDetailsPage).isDisplayed();	
+		ExplicitWait expWait = new ExplicitWait();
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(8));
+		expWait.waitforElementDisplay().until(ExpectedConditions.visibilityOfElementLocated(flightDetailsPageDisplay));
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(flightDetailsPageDisplay));
+		//wait.until(ExpectedConditions.presenceOfElementLocated(flightDetailsPageDisplay));
+		//flightDetailsPageNoResultsDisplayed = driver.findElement(flightDetailsPageNoResultsText).isDisplayed();
+		
+		//Thread.sleep(8000);
+		flightDetailsPageSearchResultsSuccessful = driver.findElement(flightDetailsPageDisplay).isDisplayed();
+		//System.out.println(flightDetailsPageSearchResultsSuccessful);
+		
+		Assert.assertTrue(flightDetailsPageSearchResultsSuccessful);
+		
+//		if(flightDetailsPageSearchResultsSuccessful == false)
+//		{
+//			Assert.assertFalse(flightDetailsPageSearchResultsSuccessful);
+//			//System.out.println("No flights available");
+//		}
+//		else if(flightDetailsPageSearchResultsSuccessful == true)
+//		{
+//			Assert.assertTrue(flightDetailsPageSearchResultsSuccessful);
+//			//System.out.println("Flights returned successfully");
+//		}
+		
 				
 	}
 	

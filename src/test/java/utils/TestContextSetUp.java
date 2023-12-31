@@ -23,7 +23,7 @@ public class TestContextSetUp
 	{
 		//Create objects of PageObjectManager, TestBase and GenericUtils
 		testBase = new TestBase();
-		pageObjectManager = new PageObjectManager(testBase.WebDriverManager());
+		pageObjectManager = new PageObjectManager();
 		genericUtils = new GenericUtils(testBase.WebDriverManager());
 		
 	

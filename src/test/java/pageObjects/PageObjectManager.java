@@ -3,12 +3,13 @@ package pageObjects;
 import org.openqa.selenium.WebDriver;
 
 import utils.GenericUtils;
+import utils.TestBase;
 import utils.TestContextSetUp;
 
-public class PageObjectManager 
+public class PageObjectManager extends TestBase
 {
 	//Define the global driver variable
-	public WebDriver driver;
+	//public WebDriver driver;
 	
 	//Create the variable for object creation
 	public LandingPage landingPage;
@@ -18,29 +19,29 @@ public class PageObjectManager
 	TestContextSetUp testContextSetUp;
 	
 	//Create constructor
-	public PageObjectManager(WebDriver driver)
-	{
-		this.driver = driver;
-	}	
+//	public PageObjectManager(WebDriver driver)
+//	{
+//		this.driver = driver;
+//	}	
 	
 	//Create the object of Landing Page and return the object
 	public LandingPage getLandingPage()
 	{
-		landingPage = new LandingPage(driver);		
+		landingPage = new LandingPage();		
 		return landingPage;
 	}
 	
 	//Create the object of Offers Page and return the object
 	public OffersPage getOffersPage()
 	{
-		offersPage = new OffersPage(driver);
+		offersPage = new OffersPage();
 		return offersPage;
 	}
 	
 	//Create the object of checkout Page and return the object
 	public CheckoutPage itemCheckout()
 	{
-		checkoutPage = new CheckoutPage(driver);
+		checkoutPage = new CheckoutPage();
 		return checkoutPage;
 	}
 	
@@ -48,7 +49,7 @@ public class PageObjectManager
 	public FlightBookingpage getFlightBooking()
 	{
 		//this.testContextSetUp = testContextSetUp;
-		flightPage = new FlightBookingpage(driver);//testContextSetUp);
+		flightPage = new FlightBookingpage();//testContextSetUp);
 		return flightPage;
 	}
 	

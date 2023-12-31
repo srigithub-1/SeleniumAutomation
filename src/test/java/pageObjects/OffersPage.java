@@ -3,16 +3,18 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class OffersPage {
-public WebDriver driver;
+import utils.TestBase;
+
+public class OffersPage extends TestBase{
+//public WebDriver driver;
 public String productOffersdisplay;
 	
 	//Create a constructor and pass instance of TestContextSetUp driver	
-	public OffersPage(WebDriver driver)
-	{
-		
-		this.driver = driver;
-	}
+//	public OffersPage(WebDriver driver)
+//	{
+//		
+//		this.driver = driver;
+//	}
 
 	//Define xpath
 	By search = By.xpath("//input[@type='search']");

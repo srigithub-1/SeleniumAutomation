@@ -17,7 +17,7 @@ import pageObjects.LandingPage;
 
 public class TestBase {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 	
 	public WebDriver WebDriverManager() throws IOException
 	{
@@ -48,7 +48,7 @@ public class TestBase {
 //			}
 			
 			//Implicit wait for the entire browser session
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.get(url);
 		}
 		

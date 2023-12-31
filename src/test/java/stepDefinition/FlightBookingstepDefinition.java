@@ -1,5 +1,7 @@
 package stepDefinition;
 
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -33,7 +35,7 @@ public class FlightBookingstepDefinition {
 	}	
 	
 	@Given("I navigate to the Flight Booking Home Page")
-	public void i_navigate_to_the_flight_booking_home_page() 
+	public void i_navigate_to_the_flight_booking_home_page() throws IOException 
 	{		
 		//Click on the flight booking link
 		//flightpage.flightBookingLinkClick();
@@ -47,7 +49,7 @@ public class FlightBookingstepDefinition {
 	}
 	
 	@When("^I enter the (.+) and (.+) with Departure Date (.+)$")
-	public void i_enter_the_toronto_and_bangalore_with_departure_date_depart_date(String origination, String destination, String depDate) throws InterruptedException
+	public void i_enter_the_toronto_and_bangalore_with_departure_date_depart_date(String origination, String destination, String depDate) throws InterruptedException, IOException
 	{
 	    // Enter source and destination cities
 	    flightpage.enterFromAndToCities(origination, destination);
@@ -55,14 +57,14 @@ public class FlightBookingstepDefinition {
 	}
 	
 	@And("I click on the Search button")
-	public void i_click_on_the_search_button()
+	public void i_click_on_the_search_button() throws IOException
 	{
 	    // Call the search flights method
 		flightpage.searchForFlights();
 	}
 	
 	@Then("All the flights matching the Search Criteria should be shown")
-	public void all_the_flights_matching_the_search_criteria_should_be_shown()
+	public void all_the_flights_matching_the_search_criteria_should_be_shown() throws IOException, InterruptedException
 	{
 		 // Verify that flight search results are shown
 		flightpage.flightDetailsPageDisplay();

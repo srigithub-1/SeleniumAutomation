@@ -50,12 +50,6 @@ public class GenericUtils {
 		//Switch to the child window
 		driver.switchTo().window(childWindow);		
 		
-	}
-	
-//	public WebDriverWait waitforElementDisplay()
-//	{
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-//		return wait;
-//	}
-	
+	}	
+
 }

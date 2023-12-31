@@ -3,18 +3,20 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutPage {
-public WebDriver driver;
+import utils.TestBase;
+
+public class CheckoutPage extends TestBase{
+//public WebDriver driver;
 LandingPage landpage;
 	
 	int i = 1, incrementcount;
 	
 	//Create a constructor and pass instance of TestContextSetUp driver	
-	public CheckoutPage(WebDriver driver)
-	{
-		
-		this.driver = driver;
-	}
+//	public CheckoutPage(WebDriver driver)
+//	{
+//		
+//		this.driver = driver;
+//	}
 
 	//Define xpath locators
 	By addToCart = By.xpath("//button[contains(text(),'ADD TO CART')]");
