@@ -103,10 +103,19 @@ public class FlightBookingpage extends TestBase{
 		ExplicitWait expWait = new ExplicitWait();
 		//Wait until the Flights menu option is shown on the flights search results page
 		expWait.waitforElementDisplay().until(ExpectedConditions.visibilityOfElementLocated(flightDetailsPageDisplay));
-		//Check if the Flights menu option is shown. Assign that to boolean variable
-		flightDetailsPageSearchResultsSuccessful = driver.findElement(flightDetailsPageDisplay).isDisplayed();
-		//Assert that Flights menu option is shown
-		Assert.assertTrue(flightDetailsPageSearchResultsSuccessful);
+		flightDetailsPageNoResultsDisplayed = driver.findElement(flightDetailsPageDisplay).isDisplayed();
+		
+		if(flightDetailsPageNoResultsDisplayed==true)
+		{
+			Assert.fail("I am sorry. Flight search results not shown. Retry after some time");
+		}
+		else
+		{
+			expWait.waitforElementDisplay().until(ExpectedConditions.visibilityOfElementLocated(flightDetailsPageSuccessfulSearchText));
+			flightDetailsPageSearchResultsSuccessful = driver.findElement(flightDetailsPageSuccessfulSearchText).isDisplayed();
+			Assert.assertTrue(flightDetailsPageSearchResultsSuccessful);
+			System.out.println("Enjoy. Your flights are shown");
+		}	
 		
 				
 	}

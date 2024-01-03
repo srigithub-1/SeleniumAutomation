@@ -1,6 +1,7 @@
 //Main scripts (Java class) that calls all the stepDefinitions in feature files
 
 package stepDefinition;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 import org.openqa.selenium.By;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import io.cucumber.java.en.Then;
 import pageObjects.OffersPage;
+import utils.TestBase;
 import utils.TestContextSetUp;
 
 public class OffersPagestepDefinition
@@ -23,35 +25,22 @@ public class OffersPagestepDefinition
 	{
 		this.testContextSetUp=testContextSetUp;
 		this.offersPage =testContextSetUp.pageObjectManager.getOffersPage();
-		this.driver =testContextSetUp.pageObjectManager.driver;
+		this.driver =TestBase.driver;
 	}
 
-//	@Then("user search with short name {string} in offers page to check if product exists")
-//	public void user_search_with_short_name_in_offers_page_to_check_if_product_exists(String shortName) throws InterruptedException {	   
-//		
-//		switchtoChildwindow();
-//		//Call the Offers Page Page Object
-//		//OffersPage offersPage = new OffersPage(driver);
-//		offersPage.SearchItem(shortName);
-//		//Fetch the text of the Product shown
-//		TextShown = offersPage.productOffersdisplay;
-//		
-//		//Initial product name fetch. For this, switch to parent window	
-//		switchtoParentwindow();
-//		offersPageProductName = driver.findElement(By.xpath("//h4[@class='product-name']")).getText().split("-")[0].trim();
-//		System.out.println("Product Name extracted is: "+offersPageProductName);//		
-
-//		
-//		//Compare the product names from landing and offers page
-//		Assert.assertEquals(offersPageProductName, TextShown);
-//	}
 	
 	//Pass Parameterized values
 	
 	@Then("^user search with short name (.+) in offers page to check if product exists$")
 	public void user_search_with_short_name_in_offers_page_to_check_if_product_exists(String shortName) throws InterruptedException {	   
 		
-		switchtoChildwindow();
+		//Click on the offers link
+		driver.findElement(By.xpath("//a[@class='cart-header-navlink'][1]")).click();
+		
+		ArrayList<String> winHandles = new ArrayList<String>(driver.getWindowHandles()); 
+		
+		//Switch to the offers page
+		switchtoChildwindow(winHandles);
 		
 		//Call the Offers Page Page Object
 		//OffersPage offersPage = new OffersPage(driver);
@@ -60,49 +49,28 @@ public class OffersPagestepDefinition
 		TextShown = offersPage.productOffersdisplay;
 		
 		//Initial product name fetch. For this, switch to parent window	
-		switchtoParentwindow();
+		switchtoParentwindow(winHandles);
 		offersPageProductName = driver.findElement(By.xpath("//h4[@class='product-name']")).getText().split("-")[0].trim();
 		System.out.println("Product Name extracted is: "+offersPageProductName);	
 		
 		//Compare the product names from landing and offers page
-		//Assert.assertEquals(offersPageProductName, TextShown);
+		Assert.assertEquals(offersPageProductName, TextShown);
 	}
 	
-	public void switchtoChildwindow()
-	{
-		//Click on the offers link
-		driver.findElement(By.xpath("//a[@class='cart-header-navlink'][1]")).click();
-						
-		//Get the count of child windows
-		Set<String> windhandles = driver.getWindowHandles();
-						
-		//Iterate through all the windows in the page
-		Iterator<String>i1 = windhandles.iterator();
-						
-		//Access the parent window
-		String parentWindow = i1.next();
-						
-		//Access the child window
-		String childWindow = i1.next();
-						
-		//Switch to the child window
-		driver.switchTo().window(childWindow);
+	public void switchtoChildwindow(ArrayList<String> winHandles)
+	{	
+		
+		//switch to the child window i.e. the Offers page 
+		driver.switchTo().window(winHandles.get(1));
+		driver.manage().window().maximize();	
+
 	}
 	
-	public void switchtoParentwindow()
+	public void switchtoParentwindow(ArrayList<String> winHandles)
 	{		
-						
-		//Get the count of child windows
-		Set<String> windhandles = driver.getWindowHandles();
-						
-		//Iterate through all the windows in the page
-		Iterator<String>i1 = windhandles.iterator();
-						
-		//Access the parent window
-		String parentWindow = i1.next();					
-								
-		//Switch to the child window
-		driver.switchTo().window(parentWindow);
+		//switch to the parent window i.e. the Green Kart landing page 
+		driver.switchTo().window(winHandles.get(0));
+		driver.manage().window().maximize();					
 	}
 		
 

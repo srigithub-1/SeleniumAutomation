@@ -25,7 +25,12 @@ public class TestBase {
 		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//test//resources//global.properties");
 		Properties prop = new Properties();
 		prop.load(fis);
-		String url = prop.getProperty("QAUrl");
+		
+		//Rahul Shetty Academy practise page
+		//String url = prop.getProperty("QAUrl");
+		
+		//Flight booking URL
+		String url = prop.getProperty("QAFlightURL");
 		//Gets browser value from properties file
 		String browser_properties = prop.getProperty("browser");
 		//Gets browser value from command line

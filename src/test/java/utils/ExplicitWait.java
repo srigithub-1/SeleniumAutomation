@@ -10,7 +10,7 @@ public class ExplicitWait extends TestBase{
 
 	public WebDriverWait waitforElementDisplay()
 	{
-		WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+		WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		return explicitWait;
 	}
 		
