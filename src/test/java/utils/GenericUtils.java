@@ -1,6 +1,7 @@
 package utils;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -25,11 +26,14 @@ public class GenericUtils {
 
 	public void SwitchWindowToChild()
 	{
-		Set<String> s1=driver.getWindowHandles();
-		Iterator<String> i1 =s1.iterator();
-		String parentWindow = i1.next();
-		String childWindow = i1.next();
-		driver.switchTo().window(childWindow);
+		ArrayList<String> winHandles = new ArrayList<String>(driver.getWindowHandles()); 
+		//switch to new tab 
+		driver.switchTo().window(winHandles.get(1));
+//		Set<String> s1=driver.getWindowHandles();
+//		Iterator<String> i1 =s1.iterator();
+//		String parentWindow = i1.next();
+//		String childWindow = i1.next();
+//		driver.switchTo().window(childWindow);
 		driver.manage().window().maximize();
 	}
 	

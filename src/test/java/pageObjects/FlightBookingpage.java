@@ -38,14 +38,6 @@ public class FlightBookingpage extends TestBase{
 	public String startDate;
 		
 	
-	//Create a constructor and pass webdriver instance
-//	public FlightBookingpage(WebDriver driver)//, TestContextSetUp testContextSetUp)
-//	{			
-//		
-//		this.driver = driver;		
-//		
-//	}
-
 	//Locators
 
 	By flightBookingPageIsDisplayed = By.xpath("//a[@href='https://phptravels.net/flights']");
@@ -83,7 +75,6 @@ public class FlightBookingpage extends TestBase{
 		Thread.sleep(2000);
 		driver.findElement(originatingCityTextBox).sendKeys(Keys.RETURN);
 		Thread.sleep(2000);
-
 		driver.findElement(destinationCityDropdown).click();			
 		driver.findElement(destinationCityTextBox).sendKeys(destination);
 		Thread.sleep(2000);
@@ -110,28 +101,12 @@ public class FlightBookingpage extends TestBase{
 	public void flightDetailsPageDisplay() throws IOException, InterruptedException
 	{
 		ExplicitWait expWait = new ExplicitWait();
-		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(8));
+		//Wait until the Flights menu option is shown on the flights search results page
 		expWait.waitforElementDisplay().until(ExpectedConditions.visibilityOfElementLocated(flightDetailsPageDisplay));
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(flightDetailsPageDisplay));
-		//wait.until(ExpectedConditions.presenceOfElementLocated(flightDetailsPageDisplay));
-		//flightDetailsPageNoResultsDisplayed = driver.findElement(flightDetailsPageNoResultsText).isDisplayed();
-		
-		//Thread.sleep(8000);
+		//Check if the Flights menu option is shown. Assign that to boolean variable
 		flightDetailsPageSearchResultsSuccessful = driver.findElement(flightDetailsPageDisplay).isDisplayed();
-		//System.out.println(flightDetailsPageSearchResultsSuccessful);
-		
+		//Assert that Flights menu option is shown
 		Assert.assertTrue(flightDetailsPageSearchResultsSuccessful);
-		
-//		if(flightDetailsPageSearchResultsSuccessful == false)
-//		{
-//			Assert.assertFalse(flightDetailsPageSearchResultsSuccessful);
-//			//System.out.println("No flights available");
-//		}
-//		else if(flightDetailsPageSearchResultsSuccessful == true)
-//		{
-//			Assert.assertTrue(flightDetailsPageSearchResultsSuccessful);
-//			//System.out.println("Flights returned successfully");
-//		}
 		
 				
 	}

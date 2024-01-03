@@ -16,5 +16,5 @@ And user checkout the item
 Examples:
 | Name |  Count |
 | Cucu  | 2 |
-| Beans | 3 |
-| Suts | 4|
+#| Beans | 3 |
+#| Suts | 4|
