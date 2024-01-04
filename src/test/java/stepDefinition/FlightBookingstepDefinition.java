@@ -12,9 +12,10 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.it.Date;
 import pageObjects.FlightBookingpage;
 import utils.GenericUtils;
+import utils.TestBase;
 import utils.TestContextSetUp;
 
-public class FlightBookingstepDefinition {
+public class FlightBookingstepDefinition{
 	
 	//Create a public driver variable
 	public WebDriver driver;
@@ -26,12 +27,12 @@ public class FlightBookingstepDefinition {
 	GenericUtils childWindowobj;
 	
 	//Create a constructor of the parent class
-	public FlightBookingstepDefinition(TestContextSetUp testContextSetUp)
+	public FlightBookingstepDefinition(TestContextSetUp testContextSetUp) throws IOException
 	{
 		this.testContextSetUp=testContextSetUp;
 		this.flightpage =testContextSetUp.pageObjectManager.getFlightBooking();		
 		this.childWindowobj = testContextSetUp.genericUtils.getGenericUtils();
-		this.driver =testContextSetUp.pageObjectManager.driver;
+		this.driver =testContextSetUp.testBase.WebDriverManager();
 	}	
 	
 	@Given("I navigate to the Flight Booking Home Page")
@@ -44,7 +45,7 @@ public class FlightBookingstepDefinition {
 		//childWindowobj.switchtoFlightBookingPage();
 		
 		//Verify that the flight booking page is displayed successfully
-		flightpage.verifythatflightBookingHomePageIsShown();	    
+		flightpage.verifythatflightBookingHomePageIsShown(driver);	    
 		
 	}
 	
@@ -52,22 +53,22 @@ public class FlightBookingstepDefinition {
 	public void i_enter_the_toronto_and_bangalore_with_departure_date_depart_date(String origination, String destination, String depDate) throws InterruptedException, IOException
 	{
 	    // Enter source and destination cities
-	    flightpage.enterFromAndToCities(origination, destination);
-	    flightpage.enterTravelDate(depDate);
+	    flightpage.enterFromAndToCities(origination, destination, driver);
+	    flightpage.enterTravelDate(depDate, driver);
 	}
 	
 	@And("I click on the Search button")
 	public void i_click_on_the_search_button() throws IOException
 	{
 	    // Call the search flights method
-		flightpage.searchForFlights();
+		flightpage.searchForFlights(driver);
 	}
 	
 	@Then("All the flights matching the Search Criteria should be shown")
 	public void all_the_flights_matching_the_search_criteria_should_be_shown() throws IOException, InterruptedException
 	{
 		 // Verify that flight search results are shown
-		flightpage.flightDetailsPageDisplay();
+		flightpage.flightDetailsPageDisplay(driver);
 	}
 	
 }

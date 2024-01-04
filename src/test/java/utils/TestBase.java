@@ -18,7 +18,7 @@ import pageObjects.LandingPage;
 
 public class TestBase {
 
-	public static WebDriver driver;
+	public WebDriver driver;
 	
 	public WebDriver WebDriverManager() throws IOException
 	{
@@ -38,8 +38,8 @@ public class TestBase {
 		
 		// result = testCondition ? value1 : value2. This is a java ternary operator
 		String browser = browser_maven!=null ? browser_maven : browser_properties;
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
+		//ChromeOptions options = new ChromeOptions();
+		//options.addArguments("--remote-allow-origins=*");
 		
 		if(driver == null)
 		{
@@ -47,7 +47,7 @@ public class TestBase {
 			{
 		System.setProperty("webdriver.chrome.driver","E://Srinath//Canada//Selenium//Softwares//chromedriver-win32//chromedriver-win32//chromedriver.exe");
 		
-		driver = new ChromeDriver(options);// driver gets the life
+		driver = new ChromeDriver();// driver gets the life
 			}
 //			if(browser.equalsIgnoreCase("firefox"))
 //			{
@@ -59,9 +59,11 @@ public class TestBase {
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.get(url);
 		
-		}
 		
+		}
 		return driver;
+		
+		
 		
 	}
 	

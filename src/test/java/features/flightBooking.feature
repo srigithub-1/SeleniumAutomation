@@ -10,4 +10,5 @@ Then All the flights matching the Search Criteria should be shown
 
 Examples:
 |FromCity|ToCity|DepartDate|
-|BLR|PNQ|30-12-2023| 
+|BLR|PNQ|15-01-2024| 
+|DEL|CHN|20-01-2024| 
