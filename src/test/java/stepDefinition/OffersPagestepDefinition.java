@@ -1,6 +1,7 @@
 //Main scripts (Java class) that calls all the stepDefinitions in feature files
 
 package stepDefinition;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
@@ -12,7 +13,7 @@ import pageObjects.OffersPage;
 import utils.TestBase;
 import utils.TestContextSetUp;
 
-public class OffersPagestepDefinition
+public class OffersPagestepDefinition extends TestBase
 {
 	public WebDriver driver;
 	public String productName, TextShown, offersPageProductName;
@@ -21,11 +22,11 @@ public class OffersPagestepDefinition
 	OffersPage offersPage;
 	
 	//Create a constructor and pass instance of TestContextSetUp class
-	public OffersPagestepDefinition(TestContextSetUp testContextSetUp)
+	public OffersPagestepDefinition(TestContextSetUp testContextSetUp) throws IOException
 	{
 		this.testContextSetUp=testContextSetUp;
 		this.offersPage =testContextSetUp.pageObjectManager.getOffersPage();
-		this.driver =TestBase.driver;
+		this.driver =testContextSetUp.testBase.WebDriverManager();
 	}
 
 	
@@ -44,7 +45,7 @@ public class OffersPagestepDefinition
 		
 		//Call the Offers Page Page Object
 		//OffersPage offersPage = new OffersPage(driver);
-		offersPage.SearchItem(shortName);
+		offersPage.SearchItem(shortName, driver);
 		//Fetch the text of the Product shown
 		TextShown = offersPage.productOffersdisplay;
 		

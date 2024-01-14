@@ -15,4 +15,4 @@ Then user search with short name <Name> in offers page to check if product exist
 Examples:
 | Name |
 | Tom  |
-#| Beet |
+| Beet |

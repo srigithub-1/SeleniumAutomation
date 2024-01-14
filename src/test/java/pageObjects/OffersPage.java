@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import utils.TestBase;
 
-public class OffersPage extends TestBase{
+public class OffersPage{
 //public WebDriver driver;
 public String productOffersdisplay;
 	
@@ -20,7 +20,7 @@ public String productOffersdisplay;
 	By search = By.xpath("//input[@type='search']");
 	
 	//Search the element and send the Name from LandingPageStepDefinition.java file
-	public String SearchItem(String passedShortName)
+	public String SearchItem(String passedShortName, WebDriver driver)
 	{
 		driver.findElement(search).sendKeys(passedShortName);
 		productOffersdisplay = driver.findElement(By.xpath("//div[@class='tableWrapper']/div/table/tbody/tr/td[1]")).getText();
