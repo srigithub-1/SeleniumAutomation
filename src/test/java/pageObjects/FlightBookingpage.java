@@ -29,7 +29,8 @@ public class FlightBookingpage extends TestBase{
 
 
 	//Locators
-
+	By languageDropdownMain = By.xpath("//li[@class='nav-item dropdown'][1]");
+	By languageDropdownselection = By.xpath("//li[@class='nav-item dropdown'][1]/ul/li/a/span[text()='English']");
 	By flightBookingPageIsDisplayed = By.xpath("//a[@href='https://phptravels.net/flights']");
 	By originatingCityDropdown = By.xpath("//div[@class='input-items from_flights show active']");
 	By destinationCityDropdown = By.xpath("//div[@class='input-items flights_arrival to_flights']");
@@ -43,14 +44,20 @@ public class FlightBookingpage extends TestBase{
 	By flightDetailsPageSuccessfulSearchText = By.xpath("//label[text()=' All Flights']");
 
 	//Methods
-	public void verifythatflightBookingHomePageIsShown(WebDriver driver) throws IOException
+	public void verifythatflightBookingHomePageIsShown(WebDriver driver) throws IOException, InterruptedException
 	{
-
 		flightMenuOptionDisplayed = driver.findElement(flightBookingPageIsDisplayed).isDisplayed();
 		if (flightMenuOptionDisplayed == true)
 		{
 
 			driver.manage().window().maximize();
+			Thread.sleep(2000);
+			driver.findElement(languageDropdownMain).click();
+			Thread.sleep(2000);
+			driver.findElement(languageDropdownselection).click();
+			Thread.sleep(2000);
+
+
 		}
 		else if (flightMenuOptionDisplayed == false)
 		{

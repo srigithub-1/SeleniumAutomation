@@ -37,7 +37,7 @@ public class FlightBookingstepDefinition{
 	}
 
 	@Given("I navigate to the Flight Booking Home Page")
-	public void i_navigate_to_the_flight_booking_home_page() throws IOException
+	public void i_navigate_to_the_flight_booking_home_page() throws IOException, InterruptedException
 	{
 		//Click on the flight booking link
 		//flightpage.flightBookingLinkClick();
