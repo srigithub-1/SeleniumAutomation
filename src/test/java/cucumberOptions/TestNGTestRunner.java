@@ -19,9 +19,9 @@ monochrome=true,tags="@FlightBooking",plugin= {"html:target/cucumber.html" , "js
 
 //AbstractTestNGCucumberTests -> To notify Cucumber that we will use testNG framework
 public class TestNGTestRunner extends AbstractTestNGCucumberTests{
-	
+
 	//extent reports aventstack in maven repository. Use "com.aventstack » extentreports"cls
-	
+
 	//grasshopper in maven repository. Use "tech.grasshopper » extentreports-cucumber7-adapter"
 
 	//To run tests in parallel
@@ -31,5 +31,5 @@ public class TestNGTestRunner extends AbstractTestNGCucumberTests{
 	{
 		return super.scenarios();
 	}
-	
+
 }

@@ -14,7 +14,3 @@ Examples:
 |Sheet1|2|
 |Sheet1|3|
 |Sheet1|4|
-
-#|FromCity|ToCity|DepartDate|
-#|BLR|PNQ|15-01-2024| 
-#|DEL|CHN|20-01-2024| 

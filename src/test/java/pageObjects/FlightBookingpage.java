@@ -36,6 +36,7 @@ public class FlightBookingpage extends TestBase{
 	By originatingCityTextBox = By.xpath("//input[@role='searchbox']");
 	By destinationCityTextBox = By.xpath("//input[@role='searchbox']");
 	By departDate = By.id("departure");
+	//By departDate = By.xpath("//div[@class='datepicker-days']//table[@class=' table-condensed']//th[@class='next']");
 	By searchBox = By.xpath("//button[@id='flights-search']");
 	By flightDetailsPageDisplay = By.xpath("//a[@href='https://phptravels.net/flights']");
 	By flightDetailsPageNoResultsText = By.xpath("//img[@alt='no results']");
